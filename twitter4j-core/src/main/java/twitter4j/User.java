@@ -188,4 +188,11 @@ public interface User extends Comparable<User>, TwitterResponse, java.io.Seriali
      * @since Twitter4J 2.1.4
      */
     boolean isFollowRequestSent();
+    
+    /**
+     * Returns true if Authenicating user is following this User, otherwise False
+     *
+     * @return true if Authenicating user is following this User
+     */
+    boolean isFollowing();
 }

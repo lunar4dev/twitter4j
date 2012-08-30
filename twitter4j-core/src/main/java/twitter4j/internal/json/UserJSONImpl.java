@@ -72,6 +72,7 @@ import static twitter4j.internal.util.z_T4JInternalParseUtil.*;
     private boolean translator;
     private int listedCount;
     private boolean isFollowRequestSent;
+    private boolean isFollowing;
     private static final long serialVersionUID = -6345893237975349030L;
 
     /*package*/UserJSONImpl(HttpResponse res, Configuration conf) throws TwitterException {
@@ -132,6 +133,7 @@ import static twitter4j.internal.util.z_T4JInternalParseUtil.*;
             statusesCount = getInt("statuses_count", json);
             listedCount = getInt("listed_count", json);
             isFollowRequestSent = getBoolean("follow_request_sent", json);
+            isFollowing =  getBoolean("following", json);
             if (!json.isNull("status")) {
                 JSONObject statusJSON = json.getJSONObject("status");
                 status = new StatusJSONImpl(statusJSON);
@@ -429,6 +431,13 @@ import static twitter4j.internal.util.z_T4JInternalParseUtil.*;
     public boolean isFollowRequestSent() {
         return isFollowRequestSent;
     }
+    
+
+    @Override
+    public boolean isFollowing() {
+        return isFollowing;
+    }
+
 
     /*package*/
     static PagableResponseList<User> createPagableUserList(HttpResponse res, Configuration conf) throws TwitterException {
@@ -546,6 +555,7 @@ import static twitter4j.internal.util.z_T4JInternalParseUtil.*;
                 ", translator=" + translator +
                 ", listedCount=" + listedCount +
                 ", isFollowRequestSent=" + isFollowRequestSent +
+                ", isFollowing=" + isFollowing +
                 '}';
     }
 }
